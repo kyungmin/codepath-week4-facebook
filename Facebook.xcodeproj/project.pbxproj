@@ -13,6 +13,8 @@
 		CDCFF73A1A9D03C0002A538E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDCFF7391A9D03C0002A538E /* Images.xcassets */; };
 		CDCFF73D1A9D03C0002A538E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCFF73B1A9D03C0002A538E /* LaunchScreen.xib */; };
 		CDCFF7491A9D03C0002A538E /* FacebookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCFF7481A9D03C0002A538E /* FacebookTests.swift */; };
+		CDCFF7531A9F9A70002A538E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCFF7521A9F9A70002A538E /* FeedViewController.swift */; };
+		CDE03A811A9FA31D008B53FB /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE03A801A9FA31D008B53FB /* DetailImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		CDCFF7421A9D03C0002A538E /* FacebookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCFF7471A9D03C0002A538E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDCFF7481A9D03C0002A538E /* FacebookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookTests.swift; sourceTree = "<group>"; };
+		CDCFF7521A9F9A70002A538E /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		CDE03A801A9FA31D008B53FB /* DetailImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				CDCFF7391A9D03C0002A538E /* Images.xcassets */,
 				CDCFF73B1A9D03C0002A538E /* LaunchScreen.xib */,
 				CDCFF7301A9D03C0002A538E /* Supporting Files */,
+				CDCFF7521A9F9A70002A538E /* FeedViewController.swift */,
+				CDE03A801A9FA31D008B53FB /* DetailImageViewController.swift */,
 			);
 			path = Facebook;
 			sourceTree = "<group>";
@@ -213,7 +219,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDCFF7351A9D03C0002A538E /* ViewController.swift in Sources */,
+				CDCFF7531A9F9A70002A538E /* FeedViewController.swift in Sources */,
 				CDCFF7331A9D03C0002A538E /* AppDelegate.swift in Sources */,
+				CDE03A811A9FA31D008B53FB /* DetailImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -346,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Facebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,6 +415,7 @@
 				CDCFF74E1A9D03C0002A538E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDCFF74F1A9D03C0002A538E /* Build configuration list for PBXNativeTarget "FacebookTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +424,7 @@
 				CDCFF7511A9D03C0002A538E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
