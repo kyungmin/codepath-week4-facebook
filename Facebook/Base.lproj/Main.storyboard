@@ -21,7 +21,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="wedding1" id="332-d8-FA8">
-                                        <rect key="frame" x="4" y="84" width="154" height="153"/>
+                                        <rect key="frame" x="4" y="83" width="155" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -29,7 +29,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="wedding2" id="fav-7d-PJ0">
-                                        <rect key="frame" x="4" y="241" width="154" height="155"/>
+                                        <rect key="frame" x="4" y="241" width="155" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -118,38 +118,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="9BC-6h-JYj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="photo_actions" id="bha-g5-fAU">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="doneButton" id="9h1-xy-SBY">
-                                <rect key="frame" x="253" y="9" width="51" height="27"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Hdb-oP-8ow">
-                                <rect key="frame" x="0.0" y="43" width="320" height="482"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fmR-SE-vec">
+                                <rect key="frame" x="259" y="15" width="51" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fmR-SE-vec">
-                                <rect key="frame" x="253" y="8" width="51" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="doneButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="didPressDoneButton:" destination="tgo-7e-vyA" eventType="touchUpInside" id="OMV-aQ-12h"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Hdb-oP-8ow">
+                                <rect key="frame" x="0.0" y="43" width="320" height="482"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="SJT-y9-X7H" appends="YES" id="qcH-IJ-FSo"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="blackView" destination="9BC-6h-JYj" id="yIX-jx-PyK"/>
                         <outlet property="detailImageView" destination="Hdb-oP-8ow" id="ZhE-cH-upx"/>
+                        <outlet property="doneButton" destination="fmR-SE-vec" id="oDe-TI-pJE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zq3-K5-4ik" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SJT-y9-X7H">
+                    <connections>
+                        <action selector="didPanDetailImage:" destination="tgo-7e-vyA" id="qoN-tt-Uf2"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="488" y="-170"/>
+            <point key="canvasLocation" x="524" y="-170"/>
         </scene>
     </scenes>
     <resources>

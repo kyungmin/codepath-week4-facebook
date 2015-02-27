@@ -11,17 +11,50 @@ import UIKit
 class DetailImageViewController: UIViewController {
 
     @IBOutlet weak var detailImageView: UIImageView!
-    var image: UIImage!
+    @IBOutlet weak var blackView: UIView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    var interactiveTransition: UIPercentDrivenInteractiveTransition!
+    var detailImage: UIImage!
+    var originalDetailImageCenter: CGPoint!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        detailImageView.image = image
+        detailImageView.image = detailImage
     }
 
     @IBAction func didPressDoneButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func didPanDetailImage(sender: UIPanGestureRecognizer) {
+        var velocity = sender.velocityInView(view)
+        var translation = sender.translationInView(view)
+        
+        if (sender.state == UIGestureRecognizerState.Began) {
+            originalDetailImageCenter = detailImageView.center
+        } else if (sender.state == UIGestureRecognizerState.Changed) {
+            if translation.y >= 0 {
+                blackView.alpha = 1 - (translation.y / 568)
+                doneButton.alpha = 1 - (translation.y / 568)
+            } else {
+                blackView.alpha = 1 - (-translation.y / 568)
+                doneButton.alpha = 1 - (-translation.y / 568)
+            }
+
+            detailImageView.center = CGPoint(x: self.originalDetailImageCenter.x, y: self.originalDetailImageCenter.y + translation.y)
+        } else if (sender.state == UIGestureRecognizerState.Ended) {
+            dismissViewControllerAnimated(true, completion: nil)
+            if velocity.y > 0 && translation.y > 0 {
+                detailImageView.center.y += detailImageView.frame.height
+            } else if velocity.y < 0 && translation.y < 0 {
+                detailImageView.center.y -= detailImageView.frame.height
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

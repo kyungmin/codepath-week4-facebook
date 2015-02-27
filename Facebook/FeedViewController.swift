@@ -8,10 +8,12 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+class FeedViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning, UIGestureRecognizerDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     var selectedImageView: UIImageView!
+    var movingImageView: UIImageView!
+    var blackView: UIView!
     var duration: NSTimeInterval!
     var isPresenting: Bool = true
     
@@ -29,16 +31,57 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         
         if (isPresenting) {
-            containerView.addSubview(toViewController.view)
+            blackView = UIView(frame: fromViewController.view.frame)
+            blackView.backgroundColor = UIColor.blackColor()
+            blackView.alpha = 0
+            
             toViewController.view.alpha = 0
+            toViewController.view.transform = CGAffineTransformMakeScale(0, 0)
+
+            movingImageView = UIImageView(frame: selectedImageView.frame)
+            movingImageView.image = selectedImageView.image
+            
+            // adjust moving image height
+            movingImageView.center.y += scrollView.frame.origin.y
+            // set approprite fill mode based on its ratio
+            if (selectedImageView.image?.size.width > selectedImageView.image?.size.height) {
+                movingImageView.contentMode = .ScaleAspectFit
+            } else {
+                movingImageView.contentMode = .ScaleAspectFill
+            }
+
+            movingImageView.clipsToBounds = selectedImageView.clipsToBounds
+            movingImageView.userInteractionEnabled = true
+            
+            containerView.addSubview(blackView)
+            containerView.addSubview(movingImageView)
+            containerView.addSubview(toViewController.view)
+
+            var detailImageViewController = toViewController as DetailImageViewController
+            var detailImageView = detailImageViewController.detailImageView
+
             UIView.animateWithDuration(duration, animations: { () -> Void in
-                toViewController.view.alpha = 1
+                self.movingImageView.frame = detailImageView.frame
+                self.blackView.alpha = 0.9
+                toViewController.view.transform = CGAffineTransformMakeScale(1, 1)
+                
                 }) { (finished: Bool) -> Void in
+                    toViewController.view.alpha = 1
+                    self.movingImageView.removeFromSuperview()
+                    self.blackView.removeFromSuperview()
                     transitionContext.completeTransition(true)
             }
         } else {
-            UIView.animateWithDuration(duration, animations: { () -> Void in
-                fromViewController.view.alpha = 0
+            fromViewController.view.alpha = 0
+            
+            movingImageView.transform = CGAffineTransformMakeScale(0.7, 0.7)
+            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 3, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+                
+                self.movingImageView.frame = self.selectedImageView.frame
+                self.movingImageView.contentMode = .ScaleAspectFill
+                self.movingImageView.center.y += self.scrollView.frame.origin.y
+                self.blackView.alpha = 0
+                
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
@@ -76,9 +119,9 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destinationViewController = segue.destinationViewController as DetailImageViewController
-        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationViewController.transitioningDelegate = self
-        destinationViewController.image = self.selectedImageView.image
+        var toViewController = segue.destinationViewController as DetailImageViewController
+        toViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        toViewController.transitioningDelegate = self
+        toViewController.detailImage = self.selectedImageView.image
     }
 }
