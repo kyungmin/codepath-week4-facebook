@@ -10,7 +10,7 @@ xx hours
 - [x] Tapping the Done button should animate the photo back into its position in the news feed.
 - [x] On scroll of the full screen photo, the background should start to become transparent, revealing the feed.
 - [x] If the user scrolls a large amount and releases, the full screen photo should dismiss.
-- [ ] Optional: The full screen photo should be zoomable.
+- [x] Optional: The full screen photo should be zoomable.
 - [ ] Optional: The user should be able to page through the other photos in full screen mode.
 
 **GIF walkthrough**

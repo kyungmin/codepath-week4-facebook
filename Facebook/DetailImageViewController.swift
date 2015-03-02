@@ -13,7 +13,6 @@ class DetailImageViewController: UIViewController {
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var blackView: UIView!
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     var interactiveTransition: UIPercentDrivenInteractiveTransition!
     var detailImage: UIImage!
@@ -24,11 +23,22 @@ class DetailImageViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        detailImageView.contentMode = .ScaleAspectFit
         detailImageView.image = detailImage
     }
 
     @IBAction func didPressDoneButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func didPinchToZoom(sender: UIPinchGestureRecognizer) {
+        var scale = sender.scale
+        
+        if (scale < 1) {
+            scale = 1
+        }
+        
+        detailImageView.transform = CGAffineTransformMakeScale(scale, scale)
     }
     
     @IBAction func didPanDetailImage(sender: UIPanGestureRecognizer) {

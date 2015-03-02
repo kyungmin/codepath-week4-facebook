@@ -141,6 +141,9 @@
                                 <rect key="frame" x="0.0" y="43" width="320" height="482"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KbF-gJ-K7n" appends="YES" id="7CS-IK-BqF"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <gestureRecognizers/>
@@ -155,11 +158,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zq3-K5-4ik" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="SJT-y9-X7H">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SJT-y9-X7H" userLabel="Pan to dismiss">
                     <connections>
                         <action selector="didPanDetailImage:" destination="tgo-7e-vyA" id="qoN-tt-Uf2"/>
                     </connections>
                 </panGestureRecognizer>
+                <pinchGestureRecognizer id="KbF-gJ-K7n" userLabel="Pinch to zoom">
+                    <connections>
+                        <action selector="didPinchToZoom:" destination="tgo-7e-vyA" id="wiH-Pn-DfH"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="524" y="-170"/>
         </scene>

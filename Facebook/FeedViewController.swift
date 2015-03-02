@@ -67,12 +67,13 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
                 
                 }) { (finished: Bool) -> Void in
                     toViewController.view.alpha = 1
-                    self.movingImageView.removeFromSuperview()
+                    self.movingImageView.alpha = 0
                     self.blackView.removeFromSuperview()
                     transitionContext.completeTransition(true)
             }
         } else {
             fromViewController.view.alpha = 0
+            movingImageView.alpha = 1
             
             movingImageView.transform = CGAffineTransformMakeScale(0.7, 0.7)
             UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 3, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
@@ -84,6 +85,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
                 
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
+                    self.movingImageView.removeFromSuperview()
                     fromViewController.view.removeFromSuperview()
             }
         }
