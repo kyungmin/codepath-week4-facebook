@@ -58,11 +58,14 @@ class DetailImageViewController: UIViewController {
 
             detailImageView.center = CGPoint(x: self.originalDetailImageCenter.x, y: self.originalDetailImageCenter.y + translation.y)
         } else if (sender.state == UIGestureRecognizerState.Ended) {
-            dismissViewControllerAnimated(true, completion: nil)
             if velocity.y > 0 && translation.y > 0 {
                 detailImageView.center.y += detailImageView.frame.height
+                dismissViewControllerAnimated(true, completion: nil)
             } else if velocity.y < 0 && translation.y < 0 {
                 detailImageView.center.y -= detailImageView.frame.height
+                dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                detailImageView.center.y = originalDetailImageCenter.y
             }
         }
     }
